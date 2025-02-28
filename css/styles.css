@@ -1,76 +1,169 @@
 /* Import a modern font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+@keyframes pop-up {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pop-in {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+h1 {
+    font-size: 36px;
+    animation: pop-up 0.5s ease forwards;
+    background-color: white;
+    padding: 30px 10px;
+}
+
 body {
+    min-height: 100vh;
+    background-attachment: fixed;
+    overflow-y: auto;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-image: url('imagedel.jpg');
-    background-size: cover; /* Ensures the image covers the entire background */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
 
 header {
     text-align: center;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-bottom: 2px solid #ddd;
+    padding: 0px;
 }
 
 nav {
-    text-align: center;
-    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 45%;
+    margin: 10px 0;
+    padding-left: 30px;
 }
 
 nav a {
-    margin: 0 15px;
+    margin: 0px 15px;
     text-decoration: none;
-    color: #333;
-    font-weight: 600;
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-}
-
-.button {
-    display: inline-block;
-    padding: 15px;
-    width: 150px; /* Adjust the width to make it square */
-    height: 150px; /* Adjust the height to make it square */
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
     color: #fff;
-    background-color: #4CAF50;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    animation: pop-in 0.5s ease forwards;
+    transition: font-size 0.2s, transform 0.2s, color 0.2s;
+}
+
+/* When a button is selected */
+nav a.selected {
+    font-size: 24px;
+    font-weight: bold;
+    color: yellow; /* Change to yellow to indicate selection */
+}
+
+nav a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    font-size: 24px;
+}
+
+/* Info button styling */
+.info-container {
+    display: none; /* Hidden by default */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.info-button {
+    display: inline-block;
+    padding: 50px;
+    width: 1000px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.774);
+    color: rgb(8, 8, 8);
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-    margin: 10px;
-    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    line-height: 30px;
+    font-family: 'Poppins', sans-serif;
 }
 
-.button:hover {
-    background-color: #45a049;
-}
-
-.button:active {
-    background-color: #45a049;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+.info-button:hover {
+    background-color: #ccc7c7;
 }
 
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #f4f4f4;
-    border-top: 2px solid #ddd;
+    background-color: #cccaca;
+    border-top: 2px solid #ddd;
+}
+
+.random-x {
+    font-size: 30px;
+    font-weight: bold;
+}
+h1 {
+    font-size: 36px;
+    animation: pop-up 0.5s ease forwards;
+    background-color: white;
+    padding: 30px 10px;
+    text-align: center;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Cool hover effect for AGRI SHIELD AI */
+h1:hover {
+    color: #4CAF50; /* Change text color to green */
+    transform: scale(1.1) rotate(-2deg); /* Slight zoom and rotation */
+    text-shadow: 0 0 15px rgba(76, 175, 80, 0.8); /* Green glowing effect */
+    cursor: pointer; /* Show pointer to indicate interaction */
+}
+/* Animation for the pop-up effect */
+@keyframes popUp {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Modify the info-container so it animates in */
+.info-container {
+    display: none; /* Initially hidden */
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Add this class dynamically when showing */
+.info-container.show {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+    animation: popUp 1s ease forwards;
 }

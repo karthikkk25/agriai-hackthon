@@ -3,26 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Website</title>
+    <title>Agri Shield</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <h1>AGRI GUARD AI</h1>
+        <h1>AGRI SHIELD AI</h1>
     </header>
+    
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+        <a href="#" id="home-button" class="nav-link selected">Home</a>
+        <a href="#" id="about-button" class="nav-link">About</a>
+        <a href="#" id="services-button" class="nav-link">Services</a>
+        <a href="#" id="contact-button" class="nav-link">Contact</a>
     </nav>
-    <div class="container">
-        <button class="button">Pest and Disease Prediction & Remedies</button>
-        <button class="button">Soil Data Analysis & Growth Optimization</button>
-        <button class="button">Weather Forecast</button>
+
+    <!-- Info Button (Visible Only on Home) -->
+    <div id="info-container" class="info-container">
+        <button class="info-button">
+            <span class="random-x">🌱 Smart Farming, Simplified</span> 🌱<br><br>
+            AgriGuard empowers farmers with AI-driven pest identification, real-time soil analytics, and hyperlocal weather alerts.<br> Snap a photo, check soil health, and stay ahead of climate risks—all in one platform.<br><br>
+
+ What We Offer:<br>
+&#8226 Pest & Disease Identification – AI-powered crop diagnosis with treatment suggestions.<br>
+&#8226 Soil Health Monitoring – Live sensor data & lab reports for better soil management.<br>
+&#8226 Weather Forecasting & Geofencing – Timely alerts to protect crops from extreme weather.<br>
+        </button>
     </div>
-    <footer>
-        <p>Footer Content</p>
-    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeButton = document.getElementById('home-button');
+            const aboutButton = document.getElementById('about-button');
+            const servicesButton = document.getElementById('services-button');
+            const contactButton = document.getElementById('contact-button');
+            const infoContainer = document.getElementById('info-container');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function showHome() {
+                navLinks.forEach(link => link.classList.remove('selected')); // Remove selection from all
+                homeButton.classList.add('selected'); // Highlight home
+                infoContainer.style.display = 'block'; // Show info button
+            }
+
+            function hideAll() {
+                navLinks.forEach(link => link.classList.remove('selected')); // Remove selection from all
+                infoContainer.style.display = 'none'; // Hide info button
+            }
+
+            // Show Home info by default
+            showHome();
+
+            homeButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                showHome();
+            });
+
+            [aboutButton, servicesButton, contactButton].forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    hideAll();
+                    button.classList.add('selected'); // Highlight clicked button
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const homeButton = document.getElementById('home-button');
+        const aboutButton = document.getElementById('about-button');
+        const servicesButton = document.getElementById('services-button');
+        const contactButton = document.getElementById('contact-button');
+        const infoContainer = document.getElementById('info-container');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function showHome() {
+            navLinks.forEach(link => link.classList.remove('selected')); // Remove selection from all
+            homeButton.classList.add('selected'); // Highlight home
+            infoContainer.style.display = 'block'; // Make sure it's displayed
+            setTimeout(() => infoContainer.classList.add('show'), 10); // Add animation after small delay
+        }
+
+        function hideAll() {
+            navLinks.forEach(link => link.classList.remove('selected')); // Remove selection from all
+            infoContainer.classList.remove('show'); // Hide with animation
+            setTimeout(() => {
+                infoContainer.style.display = 'none'; // Wait for animation to finish before hiding
+            }, 500);
+        }
+
+        // Show Home info by default
+        showHome();
+
+        homeButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            showHome();
+        });
+
+        [aboutButton, servicesButton, contactButton].forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                hideAll();
+                button.classList.add('selected'); // Highlight clicked button
+            });
+        });
+    });
+</script>
+<!-- About Section (Initially Hidden) -->
+<div id="about-container" class="info-container">
+    <button class="info-button">
+        <span class="random-x">🌾 Our Mission:</span> 🌾<br><br>
+        At AgriGuard, we believe in empowering farmers with cutting-edge AI and data-driven insights to increase yield and reduce losses.<br><br>
+
+        🚜 <strong>How It Works:</strong><br>
+        &#8226 Upload a photo of your crop – Our AI diagnoses pests & diseases instantly.<br>
+        &#8226 Monitor soil health – Get live readings from sensors or upload lab reports.<br>
+        &#8226Stay informed – Get farm-specific weather alerts & geofencing notifications.<br>
+    </button>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const homeButton = document.getElementById('home-button');
+        const aboutButton = document.getElementById('about-button');
+        const servicesButton = document.getElementById('services-button');
+        const contactButton = document.getElementById('contact-button');
+        const infoContainer = document.getElementById('info-container');
+        const aboutContainer = document.getElementById('about-container');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        let activeSection = infoContainer; // Start with the home info section
+        let activeButton = homeButton; // Home button selected by default
+
+        function showSection(section, button) {
+            if (activeSection === section) return; // Do nothing if the same section is clicked
+
+            // Remove highlight from previous button
+            navLinks.forEach(link => link.classList.remove('selected')); 
+            activeButton = button;
+            activeButton.classList.add('selected');
+
+            // Hide current active section with animation
+            if (activeSection) {
+                activeSection.classList.remove('show'); 
+                setTimeout(() => { activeSection.style.display = 'none'; }, 500); 
+            }
+
+            // Show new section
+            activeSection = section;
+            activeSection.style.display = 'block'; 
+            setTimeout(() => activeSection.classList.add('show'), 10); 
+        }
+
+        // **Ensure the info button stays until a button is clicked**
+        function keepInfoVisible() {
+            infoContainer.style.display = 'block';
+            setTimeout(() => infoContainer.classList.add('show'), 10);
+        }
+
+        // Show Home info by default
+        keepInfoVisible();
+
+        homeButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            showSection(infoContainer, homeButton);
+        });
+
+        aboutButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            showSection(aboutContainer, aboutButton);
+            infoContainer.style.display = 'none'; // Hide info when switching
+        });
+
+        [servicesButton, contactButton].forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                navLinks.forEach(link => link.classList.remove('selected'));
+                button.classList.add('selected');
+
+                if (activeSection) {
+                    activeSection.classList.remove('show'); 
+                    setTimeout(() => { activeSection.style.display = 'none'; }, 500);
+                }
+                activeSection = null; // No section should be shown
+                infoContainer.style.display = 'none'; // Hide info button
+            });
+        });
+    });
+</script>
